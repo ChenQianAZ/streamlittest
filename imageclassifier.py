@@ -32,7 +32,7 @@ def preprocess_image(image):
 def classify_image(image_data):
     img = Image.open(io.BytesIO(image_data))
     img = preprocess_image(img)
-    input_data = np.expand_dims(np.array(img), axis=0).astype(np.float32)
+    input_data = img
     
     interpreter.set_tensor(input_details[0]['index'], input_data)
     interpreter.invoke()
