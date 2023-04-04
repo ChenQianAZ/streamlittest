@@ -12,6 +12,8 @@ import streamlit as st
 import tensorflow as tf
 from PIL import Image
 import numpy as np
+import time
+
 
 # Load the TFLite model
 tflite_model_path = 'model/syrinergy_tflite_model.tflite'
@@ -44,11 +46,15 @@ def classify_image(image_data):
 st.title("Image Classification Demo")
 uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
+
+
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
     st.image(image, caption="Uploaded Image", use_column_width=True)
     st.write("")
-    
+    t = time.process_time()
+#do some stuff
+
     st.write("Classifying...")
     predictions = classify_image(uploaded_file.getvalue())
     class_names = ['before injection', 'after injection']  # Replace with your model's class names
@@ -56,6 +62,7 @@ if uploaded_file is not None:
         result = class_names[1]
     else:
         result = class_names[0]
-    
+    elapsed_time = time.process_time() - t 
     st.write("Results:")
     st.write(result)
+    st.write('inference used ',elapsed_time,' seconds')
