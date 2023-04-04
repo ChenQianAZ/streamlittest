@@ -51,8 +51,11 @@ if uploaded_file is not None:
     
     st.write("Classifying...")
     predictions = classify_image(uploaded_file.getvalue())
-    class_names = ['before', 'after']  # Replace with your model's class names
-    result = dict(zip(class_names, predictions))
+    class_names = ['before injection', 'after injection']  # Replace with your model's class names
+    if predictions>0.5:
+        result = class_names[1]
+    else:
+        result = class_names[0]
     
     st.write("Results:")
     st.write(result)
