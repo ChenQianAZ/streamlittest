@@ -1,0 +1,6 @@
+Pillow
+streamlit
+tensorflow
+base64
+numpy
+
