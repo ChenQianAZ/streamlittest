@@ -65,4 +65,4 @@ if uploaded_file is not None:
     elapsed_time = time.process_time() - t 
     st.write("Results:")
     st.write(result)
-    st.write('inference used ',elapsed_time,' seconds')
+    st.write('inference took ',elapsed_time,' seconds')
