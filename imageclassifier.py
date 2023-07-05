@@ -26,7 +26,7 @@ output_details = interpreter.get_output_details()
 
 def preprocess_image(image):  
     # Resize and normalize the image 
-    image = image.resize((300, 300), Image.ANTIALIAS).convert('RGB')
+    image = image.resize((300, 300))
     image = np.array(image) / 255.0  
     image = np.expand_dims(image, axis=0).astype(np.float32)  
     return image 
