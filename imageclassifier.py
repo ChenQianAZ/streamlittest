@@ -31,8 +31,8 @@ def preprocess_image(image):
     image = np.expand_dims(image, axis=0).astype(np.float32)  
     return image 
 
-def classify_image(image_data):
-    img = Image.open(io.BytesIO(image_data))
+def classify_image(image_path):
+    img = Image.open(image_path)
     img = preprocess_image(img)
     input_data = img
     
@@ -49,6 +49,7 @@ uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
 
 if uploaded_file is not None:
+    print(uploaded_file)
     image = Image.open(uploaded_file)
     st.image(image, caption="Uploaded Image", use_column_width=True)
     st.write("")
@@ -56,7 +57,7 @@ if uploaded_file is not None:
 #do some stuff
 
     st.write("Classifying...")
-    predictions = classify_image(uploaded_file.getvalue())
+    predictions = classify_image(uploaded_file)
     class_names = ['before injection', 'after injection']  # Replace with your model's class names
     if predictions>0.5:
         result = class_names[1]
